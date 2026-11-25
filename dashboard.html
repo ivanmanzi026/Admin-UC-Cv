@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - ProCV Admin</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="admin-body">
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="admin-sidebar" id="adminSidebar">
+        <div class="sidebar-brand">
+            <span class="logo-icon">📄</span>
+            <span class="logo-text">Pro<span class="highlight">CV</span></span>
+            <span class="admin-badge">Admin</span>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item active">
+                <i class="fas fa-chart-pie"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="users.html" class="nav-item">
+                <i class="fas fa-users"></i>
+                <span>Users</span>
+                <span class="nav-badge" id="userCount">0</span>
+            </a>
+            <a href="templates.html" class="nav-item">
+                <i class="fas fa-palette"></i>
+                <span>Templates</span>
+                <span class="nav-badge" id="templateCount">0</span>
+            </a>
+            <a href="payments.html" class="nav-item">
+                <i class="fas fa-credit-card"></i>
+                <span>Payments</span>
+                <span class="nav-badge" id="paymentCount">0</span>
+            </a>
+            <a href="plans.html" class="nav-item">
+                <i class="fas fa-crown"></i>
+                <span>Plans</span>
+            </a>
+            <a href="settings.html" class="nav-item">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="admin-user">
+                <div class="admin-avatar">A</div>
+                <div class="admin-info">
+                    <span class="admin-name" id="adminName">Admin</span>
+                    <span class="admin-role">Super Admin</span>
+                </div>
+                <button class="logout-btn" onclick="handleLogout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="admin-main">
+        <header class="admin-topbar">
+            <div class="topbar-left">
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1>Dashboard</h1>
+            </div>
+            <div class="topbar-right">
+                <div class="search-wrapper">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search...">
+                </div>
+                <div class="admin-profile">
+                    <span id="topbarAdminName">Admin</span>
+                    <img src="https://ui-avatars.com/api/?name=Admin&background=2563EB&color=fff&size=32" alt="Admin">
+                </div>
+            </div>
+        </header>
+
+        <!-- ===== DASHBOARD CONTENT ===== -->
+        <div class="page-content">
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon blue">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Total Users</span>
+                        <span class="stat-value" id="totalUsers">0</span>
+                        <span class="stat-change positive" id="userChange">
+                            <i class="fas fa-arrow-up"></i> 0%
+                        </span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon green">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Pro Users</span>
+                        <span class="stat-value" id="proUsers">0</span>
+                        <span class="stat-change positive" id="proChange">
+                            <i class="fas fa-arrow-up"></i> 0%
+                        </span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon purple">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Templates</span>
+                        <span class="stat-value" id="totalTemplates">0</span>
+                        <span class="stat-change neutral">
+                            <i class="fas fa-minus"></i> 0
+                        </span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon gold">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Revenue</span>
+                        <span class="stat-value" id="totalRevenue">RWF 0</span>
+                        <span class="stat-change positive" id="revenueChange">
+                            <i class="fas fa-arrow-up"></i> 0%
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="activity-row">
+                <div class="activity-card">
+                    <div class="activity-header">
+                        <h3>Recent Payments</h3>
+                        <a href="payments.html" class="view-all">View All →</a>
+                    </div>
+                    <div class="activity-list" id="recentPayments">
+                        <div style="text-align:center;padding:20px;color:var(--gray-500);">
+                            <i class="fas fa-spinner fa-spin"></i> Loading payments...
+                        </div>
+                    </div>
+                </div>
+
+                <div class="activity-card">
+                    <div class="activity-header">
+                        <h3>Recent Registrations</h3>
+                        <a href="users.html" class="view-all">View All →</a>
+                    </div>
+                    <div class="activity-list" id="recentUsers">
+                        <div style="text-align:center;padding:20px;color:var(--gray-500);">
+                            <i class="fas fa-spinner fa-spin"></i> Loading users...
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <h3>Quick Actions</h3>
+                <div class="actions-grid">
+                    <button class="action-btn" onclick="location.href='templates.html'">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Add Template</span>
+                    </button>
+                    <button class="action-btn" onclick="location.href='template-editor.html'">
+                        <i class="fas fa-pen-fancy"></i>
+                        <span>Visual Editor</span>
+                    </button>
+                    <button class="action-btn" onclick="location.href='users.html'">
+                        <i class="fas fa-users"></i>
+                        <span>View Users</span>
+                    </button>
+                    <button class="action-btn" onclick="location.href='payments.html'">
+                        <i class="fas fa-receipt"></i>
+                        <span>View Payments</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ===== SCRIPTS ===== -->
+    <!-- 1. Firebase SDK (Must be first!) -->
+    <script src="https://www.gstatic.com/firebasejs/11.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.0.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore-compat.js"></script>
+
+    <!-- 2. Config (Initializes Firebase) -->
+    <script src="js/config.js"></script>
+
+    <!-- 3. Auth (Uses Firebase) -->
+    <script src="js/auth.js"></script>
+
+    <!-- 4. Dashboard (Uses Firebase) -->
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

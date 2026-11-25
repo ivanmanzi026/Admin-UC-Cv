@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Plans - ProCV Admin</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="admin-body">
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="admin-sidebar" id="adminSidebar">
+        <div class="sidebar-brand">
+            <span class="logo-icon">📄</span>
+            <span class="logo-text">Pro<span class="highlight">CV</span></span>
+            <span class="admin-badge">Admin</span>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item">
+                <i class="fas fa-chart-pie"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="users.html" class="nav-item">
+                <i class="fas fa-users"></i>
+                <span>Users</span>
+            </a>
+            <a href="templates.html" class="nav-item">
+                <i class="fas fa-palette"></i>
+                <span>Templates</span>
+            </a>
+            <a href="payments.html" class="nav-item">
+                <i class="fas fa-credit-card"></i>
+                <span>Payments</span>
+            </a>
+            <a href="plans.html" class="nav-item active">
+                <i class="fas fa-crown"></i>
+                <span>Plans</span>
+            </a>
+            <a href="settings.html" class="nav-item">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="admin-user">
+                <div class="admin-avatar">A</div>
+                <div class="admin-info">
+                    <span class="admin-name">Admin</span>
+                    <span class="admin-role">Super Admin</span>
+                </div>
+                <button class="logout-btn" onclick="handleLogout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="admin-main">
+        <header class="admin-topbar">
+            <div class="topbar-left">
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1>Plans & Pricing</h1>
+            </div>
+            <div class="topbar-right">
+                <div class="admin-profile">
+                    <span>Admin</span>
+                    <img src="https://ui-avatars.com/api/?name=Admin&background=2563EB&color=fff&size=32" alt="Admin">
+                </div>
+            </div>
+        </header>
+
+        <div class="page-content">
+            <div class="page-header">
+                <div>
+                    <h2>Subscription Plans</h2>
+                    <p>Configure pricing and features for Free and Pro plans</p>
+                </div>
+            </div>
+
+            <div class="plans-container" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;max-width:900px;margin:0 auto;">
+                <!-- Free Plan -->
+                <div class="plan-card" style="background:var(--white);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);border:2px solid var(--gray-200);">
+                    <div class="plan-header" style="text-align:center;margin-bottom:20px;">
+                        <span class="plan-badge" style="display:inline-block;padding:4px 16px;border-radius:50px;font-size:12px;font-weight:700;background:var(--gray-200);color:var(--gray-600);margin-bottom:8px;">Free</span>
+                        <h3 style="font-size:24px;font-weight:800;color:var(--dark);">Free Plan</h3>
+                        <p class="plan-price" style="font-size:32px;font-weight:800;color:var(--dark);margin:8px 0;">RWF 0</p>
+                        <p class="plan-period" style="color:var(--gray-500);font-size:14px;">Forever free</p>
+                    </div>
+                    <div class="plan-body">
+                        <div class="plan-features" style="margin:16px 0;">
+                            <div class="feature-item" style="display:flex;align-items:center;gap:8px;padding:4px 0;font-size:14px;color:var(--gray-700);">
+                                <i class="fas fa-check" style="color:var(--success);"></i>
+                                <span>3 Templates</span>
+                            </div>
+                            <div class="feature-item" style="display:flex;align-items:center;gap:8px;padding:4px 0;font-size:14px;color:var(--gray-700);">
+                                <i class="fas fa-check" style="color:var(--success);"></i>
+                                <span>Basic CV Builder</span>
+                            </div>
+                            <div class="feature-item" style="display:flex;align-items:center;gap:8px;padding:4px 0;font-size:14px;color:var(--gray-700);">
+                                <i class="fas fa-check" style="color:var(--success);"></i>
+                                <span>PDF Export</span>
+                            </div>
+                            <div class="feature-item" style="display:flex;align-items:center;gap:8px;padding:4px 0;font-size:14px;color:var(--gray-700);">
+                                <i class="fas fa-check" style="color:var(--success);"></i>
+                                <span>Local Storage</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pro Plan -->
+                <div class="plan-card featured" style="background:var(--white);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);border:2px solid var(--primary);position:relative;">
+                    <div class="plan-header" style="text-align:center;margin-bottom:20px;">
+                        <span class="plan-badge" style="display:inline-block;padding:4px 16px;border-radius:50px;font-size:12px;font-weight:700;background:linear-gradient(135deg,#F59E0B,#D97706);color:white;margin-bottom:8px;">⭐ Most Popular</span>
+                        <h3 style="font-size:24px;font-weight:800;color:var(--dark);">Pro Plan</h3>
+                        <div class="plan-price-edit" style="display:flex;align-items:center;justify-content:center;gap:8px;margin:8px 0;">
+                            <input type="number" id="proPrice" class="form-control" value="2000" style="width:120px;display:inline-block;text-align:center;font-size:24px;font-weight:800;">
+                            <span style="font-size:16px;color:var(--gray-500);">/ month</span>
+                        </div>
+                        <button class="btn btn-sm btn-primary" onclick="updateProPrice()">
+                            <i class="fas fa-save"></i> Update Price
+                        </button>
+                    </div>
+                    <div class="plan-body">
+                        <div class="plan-features" id="proFeatures" style="margin:16px 0;">
+                            <!-- Features loaded by JavaScript -->
+                        </div>
+                        <div class="plan-toggle" style="margin-top:16px;padding-top:16px;border-top:1px solid var(--gray-200);display:flex;justify-content:space-between;align-items:center;">
+                            <label class="toggle-label" style="display:flex;align-items:center;gap:12px;font-size:14px;color:var(--gray-700);cursor:pointer;">
+                                <span>Plan Status:</span>
+                                <div class="toggle-switch active" onclick="togglePlanStatus(this)" style="width:44px;height:24px;background:var(--primary);border-radius:12px;position:relative;cursor:pointer;transition:all 0.3s;">
+                                    <span class="toggle-slider" style="position:absolute;top:2px;left:22px;width:20px;height:20px;background:white;border-radius:50%;transition:all 0.3s;box-shadow:0 1px 3px rgba(0,0,0,0.2);"></span>
+                                </div>
+                                <span id="planStatusText">Active</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature Management -->
+            <div class="feature-management" style="max-width:900px;margin:40px auto 0;background:var(--white);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);">
+                <h3 style="font-size:18px;font-weight:700;color:var(--dark);margin-bottom:4px;">Customize Pro Features</h3>
+                <p style="color:var(--gray-500);font-size:14px;margin-bottom:16px;">Add or remove features from the Pro plan</p>
+                <div class="feature-list" id="proFeatureList" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;">
+                    <!-- Features loaded by JavaScript -->
+                </div>
+                <div class="add-feature" style="display:flex;gap:8px;">
+                    <input type="text" id="newFeatureInput" class="form-control" placeholder="Add new feature..." style="flex:1;">
+                    <button class="btn btn-primary" onclick="addProFeature()">
+                        <i class="fas fa-plus"></i> Add Feature
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ===== TOAST CONTAINER ===== -->
+    <div id="toastContainer"></div>
+
+    <script src="https://www.gstatic.com/firebasejs/11.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.0.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore-compat.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/plans.js"></script>
+</body>
+</html>
